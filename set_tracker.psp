@@ -1,0 +1,61 @@
+<%@ page language="PL/SQL" %>
+<%@ plsql procedure="set_tracker" %>
+<%@ plsql parameter="usid" default="0" %>
+<%@ plsql parameter="passwd" default="0" %>
+<html>
+<head>
+<title> Log Attendance </title>
+<h2><B>Log Attendance</B></h2>
+<h2><B>Welcome <%= usid %></B></h2>
+</head>
+<body> 
+<style>
+body {
+    background-image: url("https://web.njit.edu/~jg248/background_acme-2.jpg");
+    background-color: darkgrey;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.button {
+    background-color: #f44336;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+<form method="POST" action="get_tracker">
+	<table>
+		<tr><td><label for=txt_sickdays</td></tr>Sick Days:        </label>
+		<td></td><input type = "text"  aligment = "center" name="set_sickdays" id="sd" size="10"> 
+		<input type="hidden" NAME="usid" value=<%=usid%> >
+		<input type = "submit" value ="Submit"><br>
+	</table>
+</form>
+
+<form method="POST" action="get_tracker">
+	<table>
+		<tr><td><label for=txt_personaldays</td></tr>Personal Days: </label>
+		<td></td><input type = "text"  aligment = "left" name="set_personaldays" id="pd" size="10" /> 
+		<input type = "submit" value ="Submit"><br>
+	</table>
+</form>
+
+<form method="POST" action="get_tracker">
+	<table>
+		<tr><td><label for=txt_vacationdays</td><tr></tr> Vacation Days: </label>
+			<td></td><input type = "text"  aligment = "left" name="set_vacationdays" id="vd" size="10" /> 
+			<input type = "submit" value ="Submit"><br>
+		</table>
+	</form>
+
+	<form method="POST" action="view_tracker">
+		View days off! 	<input type = "submit" value ="Submit">
+	</form>
+	</body>
+	</html>
+

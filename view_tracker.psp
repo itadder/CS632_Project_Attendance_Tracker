@@ -1,0 +1,75 @@
+<%@ page language="PL/SQL" %>
+<%@ page contentType="text/html" %>
+<%@ plsql procedure="view_tracker" %>
+<%-- This example displays the last name and first name of every 
+employee in the hr.employees table. --%>
+<%!
+CURSOR emp_cursor IS
+select * from attendance_a;
+%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html">
+<title>View Tracker</title>
+</head>
+<body TEXT="#000000" BGCOLOR="#DFDFDF">
+<style>
+body {
+    background-image: url("https://web.njit.edu/~jg248/background_acme-2.jpg");
+    background-color: darkgrey;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th {
+    background-color: #FF0000;
+    color: white;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+th,td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+</style>
+<h1><B>View days allowed and days left!</B></h1>
+<table>
+	<tr>
+		<th align="left">username</th>
+		<th align="left">Sick Days Allowed</th>
+		<th align="left">Sick Days Left</th>
+		<th align="left">Vacation Days Allowed</th>
+		<th align="left">Vacation Days Left</th>
+		<th align="left">Personal Days Allowed</th>
+		<th align="left">Personal Days Left</th>
+	</tr>
+	<%  FOR emp_record IN emp_cursor LOOP %>
+	
+		<td> <%= emp_record.user_name %> </td>
+
+
+		<td> <%= emp_record.sick_allowed %> </td>
+
+
+		<td> <%= emp_record.sick_num %> </td>
+
+
+		<td> <%= emp_record.vacation_allowed %> </td>
+
+
+		<td> <%= emp_record.vacation_NUM %> </td>
+
+
+		<td> <%= emp_record.personal_days %> </td>
+
+
+		<td> <%= emp_record.personal_num %> </td>
+
+	<%  END LOOP; %>
+</table>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<%@ page language="PL/SQL" %>
+<%@ plsql procedure="login" %>
+<%@ plsql parameter="incorrect" default="0" %>
+<%!
+/* Variable declarations */
+welcome_text VARCHAR(35) := 'Acme Employee Attendance Tracker';
+%>
+<html>
+<head>
+<style>
+body {                                                   
+    background-image: url("https://web.njit.edu/~jg248/background_acme-2.jpg");  
+    background-color: darkgrey;                          
+    background-size: cover;
+    background-repeat: no-repeat;
+}                                                        
+                                                         
+.button {                                                
+    background-color: #f44336;                           
+    border: none;                                        
+    color: white;                                        
+    padding: 15px 32px;                                  
+    text-align: center;                                  
+    text-decoration: none;                               
+    display: inline-block;                               
+    font-size: 16px;                                     
+}                                                        
+</style>
+<title>Welcome</title>
+
+<strong>
+	<h1>
+		<%= welcome_text %>
+	</h1>
+</strong>
+
+</head>
+<BR>
+Today is <%=to_char(sysdate, 'Day')%>,
+<%=to_char(sysdate, 'Dd / Mon / YYYY HH:MI AM')%>
+<strong>
+	<B>  <%= incorrect %></B>
+</strong>
+<BR>
+<BR>
+<FORM METHOD="POST" action="set_tracker">
+	<br>
+	<TABLE cellspacing="2" cellpadding="2" border="0">
+		<TR>
+			<TD><STRONG> User ID:</STRONG></TD>
+			<TD align="left"><input type="text"name='usid' size="20" maxlength="40"></td>	
+		</TR>
+
+		<TR>
+			<TD><STRONG> Password:</STRONG></TD>
+			<TD align="left"><input type="password"name='passwd' size="20" maxlength="40"></td>	
+		</TR>
+	</TABLE>
+	<button class="button"> Login </button>
+<!-- <INPUT type="submit" VALUE="login"> -->
+</FORM>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<%@ page language="PL/SQL" %>
+<%@ plsql procedure="get_tracker" %>
+<%@ plsql parameter="set_sickdays" default="0" %>
+<%@ plsql parameter="set_personaldays" default="0" %>
+<%@ plsql parameter="set_vacationdays" default="0" %>
+<%@ plsql parameter="usid" type="varchar2" default="null" %> 
+<html>
+<head>
+<title> Attendance Viewer </title>
+<h1>
+	<h2><B> <%= usid %></B></h2></B></h2>
+</h1>
+</head>
+<body bgcolor="#DFDFDF">
+
+<form action =
+	"<%=owa_util.get_owa_service_path%>set_tracker"
+	METHOD="post">
+	<input type="hidden" NAME="usid" value=<%=usid%> >
+<style>
+body {
+    background-image: url("https://web.njit.edu/~jg248/background_acme-2.jpg");
+    background-color: darkgrey;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+h1 {color: blue;}
+p {color: red;}
+
+</style>
+<% IF set_sickdays > 0 THEN %>
+<p> Sick Days   </p> <%= set_sickdays %>
+
+<% ELSIF set_personaldays > 0 THEN %>
+<p> Personal Days</p><%= set_personaldays %>
+
+<% ELSIF set_vacationdays > 0 THEN %>
+<p> Vacations Days</p><%= set_vacationdays %>
+
+<% else %>
+<p><a href = 'set_tracker'> Please go back and submit a day off </a> </p>
+
+<% end if; %>
+
+<P><a href = view_tracker>View day allowed and left.</a></P>
+
+</body>
+</html>
